@@ -1,0 +1,26 @@
+name: 'data_modelling_dbt'
+
+config-version: 1
+version: '0.1'
+
+profile: 'data_modelling_dbt'
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+analysis-paths: ["analysis"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets:
+    - "target"
+    - "dbt_modules"
+    - "logs"
+
+require-dbt-version: [">=1.0.0", "<2.0.0"]
+
+models:
+  data_modelling_dbt:
+      materialized: table
+      staging:
+        materialized: view
