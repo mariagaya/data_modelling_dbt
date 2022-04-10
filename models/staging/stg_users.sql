@@ -14,8 +14,8 @@ last_status as (
         , user_leaved_time
         , email
         , country
-        , MAX(_extracted_at)
-    from alerts.alerts_log
+        , MAX(_extracted_at) as last_status_date
+    from source
     group by user_id;
 
 )
