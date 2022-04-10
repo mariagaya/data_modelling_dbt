@@ -17,4 +17,4 @@ last_status as (
 
 )
 
-select * from renamed
+select * from last_status
