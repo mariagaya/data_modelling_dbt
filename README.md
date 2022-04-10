@@ -4,6 +4,10 @@
 
 {% embed url="https://gitbook.gitbook.io/exercice/UEBLwCS3bfW5lGGBSptk" %}
 
+The raw data consists of users, company, and event, with the following entity-relationship diagram:
+
+![Entity-realationship diagram](<.gitbook/assets/Screenshot 2022-04-10 at 19.19.36.png>)
+
 #### DBT Models
 
 A model is a `select` statement. Models are defined in `.sql` files, in our exercise we store our models our `models` directory.
