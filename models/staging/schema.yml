@@ -1,4 +1,4 @@
-version: 1
+version: 2
 
 models:
   - name: stg_users
@@ -7,10 +7,14 @@ models:
         tests:
           - unique
           - not_null
+      - name: company_id
+        tests:
+          - unique
+          - not_null
 
   - name: stg_company
     columns:
-      - name: order_id
+      - name: company_id
         tests:
           - unique
           - not_null
@@ -19,6 +23,8 @@ models:
     columns:
       - name: user_id
         tests:
-          - unique
           - not_null
-      
+      - name: event_name
+        tests:
+          - accepted_values:
+              values: ['space_create', 'company_create', 'edit_page_create', 'collection_create', 'space_install_gitsyn']
