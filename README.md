@@ -18,18 +18,10 @@ The aim of this model is to easily access how many times a user performed the fo
 * `collection_create`
 * `space_install_gitsync`
 
-```sql
-CREATE TABLE XXXX
-(
-  user_id STRING,
-  space_create_count as INT64,
-  space_create_last_date as DATE,
-  ...
-  space_install_gitsync_count as INT64,
-  space_install_gitsync_last_date as DATE
-);
-```
-
-Result: Please refer to `models/monthly_user_activity.sql`
+**Result:** Please refer to `models/monthly_user_activity.sql`
 
 #### 2. Past 30 days user activity table
+
+The aim of this model is to easily plot the evolution of member count per company.&#x20;
+
+**Result:** Please refer to `models/monthly_user_count.sql`
