@@ -1,5 +1,3 @@
-
-
 with cumulative_users_count as (
                 select
                     ur.year_month,
@@ -9,12 +7,12 @@ with cumulative_users_count as (
                     select
                         reg_unreg.year_month,
                         reg_unreg.company_id,
-                        SUM(reg_unreg.user_count) over (order by reg_unreg.year_month) as user_registered
+                        sum(reg_unreg.user_count) over (order by reg_unreg.year_month) as user_registered
                     from
                         (
                             (
                                 select
-                                    date_format(convert_tz(from_unixtime(created_at), '+00:00', '+02:00'), '%x-M%m') as year_month,
+                                    concat(cast({{ dbt_utils.date_trunc('year', 'created_at') }} as string), '.' , cast({{ dbt_date.month_name('created_at', short=false) }} as string)) as year_month,
                                     company_id,
                                     count(distinct user_id) as user_count
                                 from {{ ref('stg_user') }}
@@ -25,9 +23,9 @@ with cumulative_users_count as (
 
                             (
                                 select
-                                    date_format(convert_tz(from_unixtime(user_leaved_time), '+00:00', '+02:00'), '%x-M%m') as year_month,
+                                    concat(cast({{ dbt_utils.date_trunc('year', 'user_leaved_time') }} as string), '.' , cast({{ dbt_date.month_name('user_leaved_time', short=false) }} as string)) as year_month,
                                     company_id,
-                                    count(distinct user_id) as user_count
+                                    count(distinct user_id) * -1 as user_count
                                 from {{ ref('stg_user') }}
                                 where user_leaved_time IS NOT NULL
                                 group by date_format(convert_tz(from_unixtime(user_leaved_time), '+00:00', '+02:00'), '%x-M%m'), ladenid
