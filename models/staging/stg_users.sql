@@ -4,20 +4,30 @@ with source as (
 
 ),
 
-last_status as (
+first_entry as (
 
     select user_id 
         , company_id
-        , username
-        , displayName
         , user_signuped_time
-        , user_leaved_time
-        , email
-        , country
-        , MAX(_extracted_at) as last_status_date
+        , MIN(_extracted_at) as first_entry_date
+    from source
+    group by user_id;
+
+),
+
+last_entry as (
+
+    select user_id 
+        , company_id
+        , MAX(_extracted_at) as last_entry_date
     from source
     group by user_id;
 
 )
 
-select * from last_status
+select fe.user_id,
+    fe.company_id,
+    fe.user_signuped_time,
+    le.user_leaved_time
+from first_entry fe
+left join last_entry le on fe.user_id = le.user_id
