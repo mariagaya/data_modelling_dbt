@@ -17,4 +17,9 @@ last_status as (
 
 )
 
-select * from last_status
+select 
+    company_id,
+    company_name,
+    created_at, 
+    country,
+from last_status
