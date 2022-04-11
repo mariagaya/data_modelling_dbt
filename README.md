@@ -26,7 +26,7 @@ The aim of this model is to easily access how many times a user performed the fo
 * `collection_create`
 * `space_install_gitsync`
 
-As a result we need to display the count of events per user, and the last time the user executed each event.
+As a result, we need to display the count of events per user, and the last time the user executed each event.
 
 **Result:** Please refer to `models/last_30_days_events.sql`
 
@@ -35,3 +35,9 @@ As a result we need to display the count of events per user, and the last time t
 The aim of this model is to easily plot the evolution of member count per company. We need to consider that user signup and also leave the company, so it is important to accumulate the registrations but also substract the customers that leave a company every month.
 
 **Result:** Please refer to `models/monthly_user_count.sql`
+
+#### General notes
+
+* For a clear picture of the exercise, could be interesting to work with raw data stored in the  `seeds`directory. Just for test purposes.
+* It is a pity that the project could not be tested in dbt, however it was nice to work with the dbt framework to solve the exercise; it gave me an idea of the potential of the tool.
+* Working also with Gitbook gave me an idea of how the GitHub integration works and how eficient the documentation process can get.
